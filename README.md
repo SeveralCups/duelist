@@ -1,4 +1,4 @@
-# duelist-v1
+# duelist
 A todo list app.
 
 
