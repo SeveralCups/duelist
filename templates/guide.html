@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}
+DUE|LIST - Guide
+{% endblock title %}
+
+{% block content %}
+<div class="container-fluid bg-secondary user-lists-display up-a-bit shadow">
+    <h1 class="display-5 fw-bold">
+        How To Use DUE|LIST.
+    </h1>
+    <hr>
+        <div class="row row-cols-1 w-100 me-auto ms-auto">
+    {% for step in list_.items %}
+    <div class="col">
+        <div class="card bg-dark border-info mb-4">
+            <img src="{{ url_for('static', filename='/img/guide/guide-' + step.id|string + '.png') }}" class="card-img-top" alt="step {{ step.id }}">
+            <div class="card-body">
+                <p class="card-text mt-0 mb-0">{{ step.content }}</p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    </div>
+</div>
+{% endblock content %}

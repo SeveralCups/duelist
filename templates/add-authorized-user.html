@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}
+DUE|LIST - Enlist Help!
+{% endblock title %}
+
+{% block content %}
+<div class="container-fluid bg-secondary form shadow">
+    <h1 class="display-6 fw-bold">
+        Current Authorized Editors
+    </h1>
+    <hr>
+    <p class="fs-6">
+        <em>For list: {{ list_.name }}</em>
+    </p>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+            <p class="text-danger text-center">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <div class="container-fluid list-body up-a-bit down-a-bit">
+        <ul class="list-group">
+            <li class="list-group-item list-group-item-info list-group-item-action d-flex justify-content-between align-items-center">
+                    <i class="fas fa-square fa-xs me-2"></i>
+                    <span class="fs-5 me-auto">
+                        {{ list_.author.name }} - <em>{{ list_.author.email }}</em>
+                    </span>
+                </li>
+            {% for user in list_.authorized_users %}
+                <li class="list-group-item list-group-item-info list-group-item-action d-flex justify-content-between align-items-center">
+                    <i class="fas fa-square fa-xs me-2"></i>
+                    <span class="fs-5 me-auto">
+                        {{ user.name }} - <em>{{ user.email }}</em>
+                    </span>
+                    <a class="badge text-danger ms-auto" href="{{ url_for('remove_authorized_user', list_id=list_.id, user_id=user.id) }}">
+                        <i class="fas fa-trash fa-lg"></i>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <hr>
+    <p class="fs-6">
+        <em>Just enter the email of another Duelist and enlist their help!</em>
+    </p>
+    <form method="POST" action="{{ url_for('add_authorized_user', list_id=list_.id) }}">
+        <div class="form-group">
+            {{ form.csrf_token }}
+            {{ form.email.label(class_="text-info") }} {{ form.email(class_="form-control") }} <br>
+            <button type="submit" class="btn btn-info btn-lg w-50 up-a-bit"><i class="fas fa-list"></i> Enlist Help!</button>
+        </div>
+    </form>    
+</div>
+{% endblock content %}

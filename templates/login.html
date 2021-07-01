@@ -1,0 +1,27 @@
+{% extends "base.html" %} {% block title %}DUE|LIST - Log In{% endblock %} {% block
+    content %}
+    <div class="container-fluid py-5 bg-secondary form up-a-bit shadow">
+        <h1 class="display-5 fw-bold">Log In</h1>
+        <hr />
+        <p class="fs-5">
+          <em>Start orgainising.</em>
+        </p>
+      <form method="POST" action="/login" enctype="multipart/form-data">
+        <div class="form-group">
+          {% with messages = get_flashed_messages() %}
+            {% if messages %}
+              {% for message in messages %}
+                <p class="text-danger text-center">{{ message }}</p>
+              {% endfor %}
+            {% endif %}
+          {% endwith %}
+            {{ form.csrf_token }}
+            {{ form.email.label(class_="text-info") }} {{ form.email(class_="form-control") }} <br>
+            {{ form.password.label(class_="text-info") }} {{ form.password(class_="form-control") }} <br>
+            <button type="submit" class="btn btn-info btn-lg w-50 up-a-bit">Log In <i class="fas fa-sign-in-alt"></i></button>
+        </div>
+        
+      </form>
+    </div>
+    {% endblock content %}
+    

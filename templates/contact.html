@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}DUE|LIST - About{% endblock %}
+
+{% block content %}
+
+
+<div class="container-fluid bg-secondary form up-a-bit shadow">
+    <h1 class="display-5 fw-bold">
+        Contact.
+    </h1>
+    <hr>
+    <p class="fs-5">
+        <em>How to contact me...</em>
+    </p>
+    <div class="row">
+        <div class="col-sm-4">
+            <img class="mx-auto d-block my-face" src="{{ url_for('static', filename='/img/karls-face.jpg') }}">
+        </div>
+        <div class="col-sm me-auto ms-auto mb-auto d-block mt-4">
+            <p>Hi, I'm Karl!</p>
+            <p>Previously a CNC Machinist, now a Web Developer.</p>
+            <p>You can contact me via <a href="https://www.twitter.com/_severalcups">twitter</a>.</p> 
+        </div>
+    </div>
+</div>
+    {# <h1 class="display-5 fw-bold">
+        Contact.
+    </h1>
+    <hr>
+    <p class="fs-5">
+        <em>How to contact me...</em>
+    </p>
+    <div class="container-fluid my-face">
+        <img src="/static/img/karl's-face.jpg" alt="Karl's Face">
+    </div>
+    <div class="container-fluid contact-text">
+        <p>Hi, I'm Karl!</p>
+        <p>Previously a CNC Machinist, now a Web Developer.</p>
+        <p>You can contact me via <a href="https://www.twitter.com/_severalcups">twitter</a>.</p>
+    </div>
+</div> #}
+
+{% endblock %}

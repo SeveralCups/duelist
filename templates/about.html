@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}DUE|LIST - About{% endblock %}
+
+{% block content %}
+
+
+<div class="container-fluid bg-secondary form up-a-bit shadow">
+    <h1 class="display-5 fw-bold">
+        About This Site.
+    </h1>
+    <hr>
+    <p class="fs-5">
+        <em>A tale of incomprehensible excitement...</em>
+    </p>
+    <p>
+        I built this site as one of my final projects for 
+        <a href="https://www.appbrewery.co/">The App Brewery's</a> 
+        python bootcamp <a href="https://www.udemy.com/course/100-days-of-code/">course on Udemy</a>. 
+        I decided to force as many terrible list puns as possible while making the site, 
+        which turned out to be just two... yeah. Duelist is a horrible 
+        and extremely forced name, which is why it's so perfect. Using 
+        "enlist" as much as possible was a genuine stroke of genius though, 
+        don't @ me ( <a href="https://twitter.com/_severalcups">or do</a> ).
+    </p>
+    <p>
+        The site is built using Flask, Bootstrap 5, WTForms, SQLAlchemy and a PostgreSQL 
+        database. If you make an account, your password is salted and hashed and all 
+        that good stuff, so don't worry. The guide ( which is actually rendered 
+        from a list in the database ) does a good job of covering all site 
+        functionality if you would prefer not to make an account, though.
+    </p>
+    <div class="container-fluid w-100 text-center text-info mb-3">
+        <div class="row">
+            <div class="col">
+                <i class="fab fa-4x fa-python text-info"></i>
+            </div>
+            <div class="col">
+                <i class="fab fa-4x fa-bootstrap"></i>
+            </div>
+            <div class="col">
+                <i class="fas fa-4x fa-database"></i>
+            </div>
+        </div>
+    </div>
+    <p>
+        Thanks for checking out my project. Please hire me and whatnot.
+    </p>
+    <p>Logo Attribution: <a href="https://www.vecteezy.com/free-vector/medieval">Medieval Vectors by Vecteezy</a></p>
+    <p>
+        That's the link they gave me for attribution. I don't know why it doesn't take you 
+        directly to the logo itself, but hey; I did what they asked.
+    </p>
+</div>
+
+{% endblock %}

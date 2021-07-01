@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block title %}DUE|LIST - {{ current_user.name }}'s Lists{% endblock %}
+
+{% block content %}
+
+
+<div class="container-fluid bg-secondary form shadow">
+    <h1 class="display-5 fw-bold">
+        Create a New List.
+    </h1>
+    <hr>
+    <p class="fs-5">
+        <em>Take the day step by step...</em>
+    </p>
+    <form method="POST" action="/my-lists">
+        <div class="form-group">
+            {{ form.csrf_token }}
+            {{ form.name.label(class_="text-info") }} {{ form.name(class_="form-control") }} <br>
+            <button type="submit" class="btn btn-info btn-lg w-50 up-a-bit"><i class="fas fa-list"></i> Create!</button>
+        </div>
+    </form>
+</div>
+<div class="container-fluid bg-secondary user-lists-display down-a-bit up-a-bit shadow">
+    <h1 class="display-6 fw-bold">
+        {{ current_user.name }}'s Lists.
+    </h1>
+    <hr>
+    {% if current_user.lists|length < 1 %}
+    <div class="text-center">
+        <p class="fs-5 text-dark">You haven't made any lists yet.</p>
+    </div>
+    {% endif %}
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 w-100 me-auto ms-auto">
+    {% for list_ in current_user.lists|reverse %}
+    <div class="col">
+        <div class="card bg-dark border-info mb-4">
+            <div class="card-body">
+                <h5 class="card-title mb-0"><i class="fas fa-stream"></i> {{ list_.name }}</h5>
+                <p class="card-text text-muted mt-0 mb-0"><em><i class="fas fa-list"></i> {{ list_.items|length }}</em> | <em><i class="fas fa-user-friends"></i> {{ list_.authorized_users|length + 1 }}</em> | <em><i class="fas fa-calendar-plus"></i> {{  list_.date_created }}</em></p>
+                <hr class="mt-0 mb-2">
+                <a class="btn btn-info btn-sm w-100" href="{{ url_for('show_list', list_id=list_.id) }}">Open <i class="fas fa-edit"></i></a>
+                <a class="btn btn-outline-info btn-sm w-100 mt-2" href="{{ url_for('add_authorized_user', list_id=list_.id) }}">Enlist Help <i class="fas fa-user-plus"></i></a>
+                <a class="btn btn-outline-danger btn-sm w-100 mt-2" href="{{ url_for('confirm_list_deletion', list_id=list_.id) }}">Delete <i class="fas fa-trash"></i></a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    </div>
+    {% if current_user.helper_lists|length > 0 %}
+    <h1 class="display-6 fw-bold">
+        Helper Lists.
+    </h1>
+    <hr>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 w-100 me-auto ms-auto">
+    {% for list_ in current_user.helper_lists|reverse %}
+    {%if list_.author != current_user %}
+    <div class="col">
+        <div class="card bg-dark border-info mb-4">
+            <div class="card-body">
+                <h5 class="card-title mb-0"><i class="fas fa-stream"></i> {{ list_.name }}</h5>
+                <p class="card-text text-muted mt-0 mb-0"><em><i class="fas fa-list"></i> {{ list_.items|length }}</em> | <em><i class="fas fa-user-friends"></i> {{ list_.authorized_users|length + 1 }}</em> | <em><i class="fas fa-calendar-plus"></i> {{  list_.date_created }}</em></p>
+                <hr class="mt-0 mb-2">
+                <a class="btn btn-info btn-sm w-100" href="{{ url_for('show_list', list_id=list_.id) }}">Open <i class="fas fa-edit"></i></a>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+    </div>
+    {% endif %}
+</div>
+
+{% endblock %}

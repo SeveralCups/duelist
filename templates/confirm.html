@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}
+DUE|LIST - Are you sure?
+{% endblock title %}
+
+{% block content %}
+<div class="container-fluid bg-secondary form up-a-bit shadow">
+    <h1 class="display-5 fw-bold">
+        Confirm '{{ list_.name }}' for deletion
+    </h1>
+    <hr>
+    <p class="fs-5">
+        <em>Choose wisely...</em>
+    </p>
+    <p>
+        <a class="btn btn-danger btn-lg w-100 mt-2" href="{{ url_for('delete_list', list_id=list_.id) }}">Delete <i class="fas fa-trash"></i></a>
+        <a class="btn btn-info btn-lg w-100 mt-2" href="{{ url_for('my_lists') }}">Cancel <i class="fas fa-undo-alt"></i></a>
+    </p>
+</div>
+{% endblock content %}
